@@ -14,6 +14,7 @@ print "RPi board rev: " + str(GPIO.RPI_INFO['P1_REVISION'])
 #------------------------------------------------------
 # Pin definitions and setup functions
 ledPin = 12
+counter = 0
 n_times = raw_input("Enter total number of blinks: ")
 sleepTime = raw_input("Enter sleep time: ")
 
@@ -41,13 +42,13 @@ def blink_ntimes(pin, n_times, sleepTime):
     print "Done!"
 
 #------------------------------------------------------
-# Turns of all GPIO warnings
+# Turns of all GPIO warnings, better not to
 GPIO.setwarnings(False)
 
 #------------------------------------------------------
 # Mode select for pin numbering
-#GPIO.setmode(GPIO.BCM) # pin numbering of Broadcom SOC
-GPIO.setmode(GPIO.BOARD) # Better, will work with all RPis
+#GPIO.setmode(GPIO.BCM) # pin numbering of Broadcom SOC, GPIO4,GPIO18, ..etc.
+GPIO.setmode(GPIO.BOARD) # Better, will work with all RPis, pin number
 
 # to detect which mode set by other python module,
 # returns: GPIO.BOARD, GPIO.BCM or GPIO.UNKNOWN
@@ -71,11 +72,14 @@ GPIO.setup(ledPin,GPIO.OUT)
 #------------------------------------------------------
 #------------------------------------------------------
 try:
-    blink_ntimes(ledPin,int(n_times),float(sleepTime))
+   # blink_ntimes(ledPin,int(n_times),float(sleepTime))
+    while True:
+        blink(ledPin)
+        counter +=1
 
 except KeyboardInterrupt:
-    # CTRL+C related interrupt
-    print "\nProgram interrupted"
+    # CTRL+C related interrupt, will run before program exits
+    print "\nProgram interrupted at %d" % counter
 
 except:
     # catches all other exceptions
@@ -83,9 +87,10 @@ except:
 
 finally:
     GPIO.cleanup() # ensures clean exit
+    ptint "Safe exit"
 
 
-
+# For loop can also be used, usage:
 #for i in range(0,50):
 #    blink(12)
 
@@ -95,10 +100,3 @@ finally:
 #GPIO.cleanup()
 #GPIO.cleanup((channel1,channel2))
 #GPIO.cleanup([channel1,channel2])
-
-#while True:
-#    GPIO.output(4,True)
-#    time.sleep(1)
-#    GPIO.output(4,False)
-#    time.sleep(1)
-    
