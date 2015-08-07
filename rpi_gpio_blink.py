@@ -1,4 +1,4 @@
-#Raspberry Pi GPIO Example
+#Raspberry Pi detailed GPIO blink example
 try:
     import RPi.GPIO as GPIO
 except RuntimeError:
@@ -66,13 +66,12 @@ GPIO.setup(ledPin,GPIO.OUT)
 #chan_list = [11,12] # tuples can also be used as: chan_list = (11,12)
 #GPIO.setup(chan_list, GPIO.OUT)
 
-
-
-
 #------------------------------------------------------
 #------------------------------------------------------
-try:
-   # blink_ntimes(ledPin,int(n_times),float(sleepTime))
+# use try and except statements for safe operation and clean exit
+try: 
+    # Main program code goes here
+    # blink_ntimes(ledPin,int(n_times),float(sleepTime))
     while True:
         blink(ledPin)
         counter +=1
@@ -86,8 +85,9 @@ except:
     print "\mUnknown error happened"
 
 finally:
+    # executes right before exit
     GPIO.cleanup() # ensures clean exit
-    ptint "Safe exit"
+    ptint "Safe exit SUCCESSFUL!"
 
 
 # For loop can also be used, usage:
