@@ -1,8 +1,8 @@
 # GPIO 2 proqrami, daha yaxshi ishleyen
 
 # kitabxana elavesi
-import RPi.GPIO as GPIO # GPIO qisaltmasindan istifade et
-import time 		# sleep(saniye) funksiyasi ucun
+import RPi.GPIO as GPIO     # GPIO qisaltmasindan istifade et
+import time 		        # sleep(saniye) funksiyasi ucun
 
 # pin nomresi
 ledPin = 12
@@ -19,9 +19,9 @@ def blink(pin):
 
 # pin teyinati
 saygac = 0
-GPIO.setwarnings(False)  # xeberdarliqlari sondur
-GPIO.setmode(GPIO.BOARD) # fiziki pin nomrelenme sxemi
-GPIO.setup(ledPin, GPIO.OUT) # pin 12 cixish olaraq teyin edilir
+GPIO.setwarnings(False)         # xeberdarliqlari sondur
+GPIO.setmode(GPIO.BOARD)        # fiziki pin nomrelenme sxemi
+GPIO.setup(ledPin, GPIO.OUT)    # pin 12 cixish olaraq teyin edilir
 
 # sonsuz/sonlu dovre - try, except bloku ile
 try:
@@ -35,7 +35,7 @@ except KeyboardInterrupt:
     print "Proqram saxlanildi!" 
 
 finally:
-    GPIO.cleanup()   # pinlerin veziyyetini sifirla
+    GPIO.cleanup()              # pinlerin veziyyetini sifirla
     print "Pinler sifirlandi"
 
 # Proqrami yarida saxlamaq ucun Ctrl+C
