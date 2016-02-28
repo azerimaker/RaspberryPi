@@ -6,9 +6,9 @@ import datetime
 import time
 
 # Plotly api key and token
-username = 'condorxan'
-api_key = '49f52bahri'
-stream_token = 'k5qitbsg6x'
+username = 'your_username'
+api_key = 'your_api_key'
+stream_token = 'your_stream_token'
 
 py.sign_in(username, api_key)
 
